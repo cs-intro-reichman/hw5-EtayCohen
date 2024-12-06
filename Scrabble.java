@@ -76,6 +76,10 @@ public class Scrabble {
 
 		score = score * word.length();
 
+		if (word.length() == HAND_SIZE) {
+			score += 50;
+		}
+
 		if (MyString.subsetOf("runi", word)) {
 			score += 1000;
 		}
@@ -119,20 +123,17 @@ public class Scrabble {
 				break;
 			}
 
-			if (MyString.subsetOf(input, hand)) {
-				if (isWordInDictionary(input)) {
-					int inputScore = wordScore(input);
-
-					score += inputScore;
-					hand = MyString.remove(hand, input);
-
-					System.out.printf("%s earned %d points. Score: %d points", input, inputScore, score);
-				} else {
-					System.out.println("No such word in the dictionary. Try again.");
-				}
-
-			} else {
+			if (!MyString.subsetOf(input, hand)) {
 				System.out.println("Invalid word. Try again.");
+			} else if (isWordInDictionary(input)) {
+				int inputScore = wordScore(input);
+
+				score += inputScore;
+				hand = MyString.remove(hand, input);
+
+				System.out.printf("%s earned %d points. Score: %d points\n", input, inputScore, score);
+			} else {
+				System.out.println("No such word in the dictionary. Try again.");
 			}
 
 		}
