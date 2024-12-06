@@ -131,7 +131,7 @@ public class Scrabble {
 				score += inputScore;
 				hand = MyString.remove(hand, input);
 
-				System.out.printf("%s earned %d points. Score: %d points\n", input, inputScore, score);
+				System.out.printf("%s earned %d points. Score: %d points\n\n", input, inputScore, score);
 			} else {
 				System.out.println("No such word in the dictionary. Try again.");
 			}
